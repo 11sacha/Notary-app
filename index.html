@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <link rel="shortcut icon" type="x-icon" href="resources/icons8-book-94.png">
+    <link rel="stylesheet" href="styles.css">
+    <title>Notary</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <script src="script.js"></script> -->
+  </head>
+  <body>
+    <div class="container">
+        <div class="row">
+            <!-- Main content area -->
+            <div class="col-md-8">
+                <a href="/"><img src="resources/NotoryLogowhiteMed.png" class="responsive"></a>
+                <div class="card mb-4">
+                    <h2 class="card-header" id="fileName">Book Title</h2>
+                    <div class="displayBox scroll-box" id="fileContent">
+                        <div id="markme"></div>
+                        Select a book on the right
+                    </div>
+                    <div class="card-footer text-muted">
+                        <a href="https://www.freecodecamp.org/learn" target="_blank">Learn to Code at freeCodeCamp</a>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="col-md-4">
+                <!-- Search widget-->
+                <div class="card my-4">
+                    <h5 class="card-header">Search</h5>
+                    <div class="card-body">
+                        <div class="input-group">
+                            <input type="text" class="form-control" id="keyword" placeholder="Search for..">
+                            <span class="input-group-button">
+                                <button class="btn btn-secondary" type="button" onclick="performMark()">Search</button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="card-footer" id="searchstat">
+
+                    </div>
+                </div>
+                <!-- Widget for selecting a book -->
+                <div class="card my-4">
+                    <h5 class="card-header">Select a Book</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0">
+                                    <li><a href="#" onclick="loadBook('JekyllAndHyde.txt', 'Jekyll and Hyde')">Jekyll and Hyde</a></li>
+                                    <li><a href="#" onclick="loadBook('AliceInWonderland.txt', 'Alice in Wonderland')">Alice in Wonderland</a></li>
+                                    <li><a href="#" onclick="loadBook('LOTR.txt', 'Lord of the Rings')">Lord of the Rings</a></li>
+                                    <li><a href="#" onclick="loadBook('The-Hobbit.txt', 'The Hobbit')">The Hobbit</a></li>
+                                    <li><a href="#" onclick="loadBook('Harry Potter 1.txt', 'Harry Potter 1')">Harry Potter 1</a></li>
+                                    <li><a href="#" onclick="loadBook('Harry Potter 2.txt', 'Harry Potter 2')">Harry Potter 2</a></li>
+                                    <li><a href="#" onclick="loadBook('Harry Potter 3.txt', 'Harry Potter 3')">Harry Potter 3</a></li>
+                                    <li><a href="#" onclick="loadBook('Harry Potter 4.txt', 'Harry Potter 4')">Harry Potter 4</a></li>
+                                    <li><a href="#" onclick="loadBook('The-Brothers-Karamazov.txt', 'The Brothers Karamazov')">The Brothers Karamazov</a></li>
+                                    <li><a href="#" onclick="loadBook('Crime-and-Punishment.txt', 'Crime and Punishment')">Crime and Punishment</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Widget for most used words-->
+                <div class="card my-4">
+                    <h5 class="card-header">Most Used Words</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0" id="mostUsed">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Widget for least used words-->
+                <div class="card my-4">
+                    <h5 class="card-header">Least Used Words</h5>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <ul class="list-unstyled mb-0" id="leastUsed">
+                                   
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card my-4">
+                    <h5 class="card-header">Document Stats</h5>
+                    <div class="card-body">
+                         <div class="col-md-12">
+                            <ul class="list-unstyled mb-0">
+                                <li id="docLength"></li>
+                                <li id="wordCount"></li>
+                                <li id="charCount"></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="template-ul-items" type="text/template">
+        <li>
+            {{value}}
+        </li>
+    </script>
+      
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+</html>
